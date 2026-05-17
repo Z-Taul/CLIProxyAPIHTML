@@ -1,0 +1,702 @@
+@use '../styles/variables.scss' as *;
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.95fr);
+  gap: $spacing-lg;
+  padding: $spacing-xl;
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 68%, transparent);
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--primary-color) 10%, transparent), transparent 42%),
+    radial-gradient(circle at bottom right, color-mix(in srgb, var(--success-color) 10%, transparent), transparent 36%),
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-primary) 96%, transparent), color-mix(in srgb, var(--bg-secondary) 92%, transparent));
+  box-shadow:
+    0 26px 80px rgb(15 23 42 / 0.08),
+    inset 0 1px 0 rgb(255 255 255 / 0.06);
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-lg;
+    border-radius: 22px;
+  }
+}
+
+.heroMain {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.heroEyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+}
+
+.heroDescription {
+  margin: 0;
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.heroMeta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $spacing-sm;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.heroMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bg-primary) 84%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-color) 64%, transparent);
+
+  strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+}
+
+.heroMetaLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: $spacing-sm;
+
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: $spacing-md;
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-color) 70%, transparent);
+  min-height: 148px;
+}
+
+.summaryLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.summaryValue {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.summaryHint {
+  margin-top: auto;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.heroPanel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-primary) 94%, transparent), color-mix(in srgb, var(--bg-secondary) 90%, transparent));
+  border: 1px solid color-mix(in srgb, var(--border-color) 72%, transparent);
+}
+
+.heroPanelHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-sm;
+}
+
+.heroPanelEyebrow {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.heroPanelTitle {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.connected {
+  color: var(--success-color);
+  background: color-mix(in srgb, var(--success-color) 14%, var(--bg-primary));
+  border-color: color-mix(in srgb, var(--success-color) 28%, transparent);
+}
+
+.connecting {
+  color: var(--warning-text);
+  background: color-mix(in srgb, var(--warning-bg) 88%, transparent);
+  border-color: color-mix(in srgb, var(--warning-border) 72%, transparent);
+}
+
+.disconnected {
+  color: var(--danger-color);
+  background: color-mix(in srgb, var(--danger-color) 12%, var(--bg-primary));
+  border-color: color-mix(in srgb, var(--danger-color) 24%, transparent);
+}
+
+.panelMetric {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.panelMetricValue {
+  font-size: clamp(42px, 5vw, 56px);
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.panelMetricLabel {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.trendBars {
+  display: grid;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  gap: 6px;
+  align-items: end;
+  min-height: 76px;
+}
+
+.trendBar {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  gap: 2px;
+  height: 76px;
+  padding: 4px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg-tertiary) 88%, transparent);
+}
+
+.trendBarSuccess,
+.trendBarFailure {
+  display: block;
+  width: 100%;
+  border-radius: 999px;
+}
+
+.trendBarSuccess {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--success-color) 65%, white), var(--success-color));
+}
+
+.trendBarFailure {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--danger-color) 70%, white), var(--danger-color));
+}
+
+.trendBarIdle {
+  background: color-mix(in srgb, var(--bg-tertiary) 92%, transparent);
+}
+
+.panelDetails {
+  display: grid;
+  gap: 10px;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--border-color) 72%, transparent);
+  font-size: 13px;
+
+  span {
+    color: var(--text-secondary);
+  }
+
+  strong {
+    color: var(--text-primary);
+    text-align: right;
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-md;
+}
+
+.sectionTitle {
+  margin: 0 0 6px;
+  font-size: 24px;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+.sectionDescription {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.quickGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $spacing-md;
+
+  @media (max-width: 980px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quickCard {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  border-radius: 22px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 72%, transparent);
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--bg-primary) 96%, transparent), color-mix(in srgb, var(--bg-secondary) 90%, transparent));
+  text-decoration: none;
+  transition:
+    transform $transition-fast,
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--primary-color) 36%, transparent);
+    box-shadow: 0 22px 48px rgb(15 23 42 / 0.08);
+  }
+}
+
+.quickCardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--primary-color) 10%, var(--bg-secondary));
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.quickCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.quickCardValue {
+  font-size: 32px;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.quickCardLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.quickCardDescription {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+  gap: $spacing-lg;
+
+  @media (max-width: 980px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel,
+.configSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 72%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-primary) 96%, transparent), color-mix(in srgb, var(--bg-secondary) 92%, transparent));
+}
+
+.usageList,
+.attentionList {
+  display: grid;
+  gap: $spacing-sm;
+}
+
+.usageCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: $spacing-md;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 68%, transparent);
+  background: color-mix(in srgb, var(--bg-primary) 86%, transparent);
+  text-decoration: none;
+  transition:
+    transform $transition-fast,
+    border-color $transition-fast,
+    background $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--primary-color) 34%, transparent);
+    background: color-mix(in srgb, var(--bg-secondary) 88%, transparent);
+  }
+}
+
+.usageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-sm;
+}
+
+.usageName {
+  display: block;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.usageSubtext {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.usageTotal {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.usageBarTrack {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-tertiary) 90%, transparent);
+  overflow: hidden;
+}
+
+.usageBarFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.usageFooter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-size: 12px;
+}
+
+.usageMetricSuccess {
+  color: var(--success-color);
+}
+
+.usageMetricFailure {
+  color: var(--danger-color);
+}
+
+.usageMetricRate {
+  color: var(--text-secondary);
+}
+
+.emptyPanel {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: $spacing-lg;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bg-secondary) 90%, transparent);
+  color: var(--text-secondary);
+}
+
+.attentionCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: $spacing-md;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgb(15 23 42 / 0.08);
+  }
+}
+
+.attentionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  font-size: 13px;
+
+  strong {
+    font-size: 15px;
+  }
+
+  span {
+    color: var(--text-secondary);
+  }
+}
+
+.attentionGood {
+  background: color-mix(in srgb, var(--success-color) 10%, var(--bg-primary));
+  border-color: color-mix(in srgb, var(--success-color) 22%, transparent);
+  color: color-mix(in srgb, var(--success-color) 86%, black);
+}
+
+.attentionWarning {
+  background: color-mix(in srgb, var(--warning-bg) 88%, var(--bg-primary));
+  border-color: color-mix(in srgb, var(--warning-border) 78%, transparent);
+  color: var(--warning-text);
+}
+
+.attentionDanger {
+  background: color-mix(in srgb, var(--danger-color) 10%, var(--bg-primary));
+  border-color: color-mix(in srgb, var(--danger-color) 20%, transparent);
+  color: var(--danger-color);
+}
+
+.configPillGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.configPill {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 74%, transparent);
+  background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
+}
+
+.configPillWide {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.configPillLabel {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.configPillValue {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.on {
+  color: var(--success-color);
+}
+
+.off {
+  color: var(--text-secondary);
+}
+
+.configPillMono {
+  font-size: 12px;
+  font-family: $font-mono;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.configBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.configBadgeRoundRobin {
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 12%, var(--bg-primary));
+  border: 1px solid color-mix(in srgb, var(--primary-color) 24%, transparent);
+}
+
+.configBadgeFillFirst {
+  color: var(--success-color);
+  background: color-mix(in srgb, var(--success-color) 12%, var(--bg-primary));
+  border: 1px solid color-mix(in srgb, var(--success-color) 24%, transparent);
+}
+
+.configBadgeUnknown {
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--bg-secondary) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-color) 72%, transparent);
+}
+
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 76%, transparent);
+  background: color-mix(in srgb, var(--bg-primary) 86%, transparent);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    transform $transition-fast,
+    border-color $transition-fast,
+    background $transition-fast;
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    background: color-mix(in srgb, var(--bg-secondary) 90%, transparent);
+  }
+}
+
+:global([data-theme='dark']) {
+  .hero,
+  .heroPanel,
+  .panel,
+  .configSection,
+  .quickCard {
+    box-shadow:
+      0 28px 80px rgb(0 0 0 / 0.24),
+      inset 0 1px 0 rgb(255 255 255 / 0.03);
+  }
+
+  .attentionGood {
+    color: #92e6b3;
+  }
+
+  .attentionWarning {
+    color: #f6d88d;
+  }
+
+  .attentionDanger {
+    color: #f4b0a7;
+  }
+}
